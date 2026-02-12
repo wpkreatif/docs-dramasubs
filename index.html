@@ -6,10 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" title="docsify-darklight-theme" type="text/css">
+
   <style>
+    /* Paksa hapus icon GitHub */
     .github-corner {
       display: none !important;
+    }
+    /* Sedikit penyesuaian sidebar agar lebih clean */
+    .sidebar {
+      padding-top: 20px;
     }
   </style>
 </head>
@@ -18,21 +24,45 @@
   <script>
     window.$docsify = {
       name: 'Dramasubs Docs',
-      // repo: 'wpkreatif/docs-dramasubs',
-      loadSidebar: false,
+      loadSidebar: true, // Ubah ke true agar menu samping muncul kembali
       subMaxLevel: 3,
       auto2top: true,
-      // Konfigurasi Search
       search: {
         maxAge: 86400000,
         paths: 'auto',
         placeholder: 'Cari dokumentasi...',
         noData: 'Tidak ditemukan!',
         depth: 6
+      },
+      // Konfigurasi Dark Mode
+      darklightTheme: {
+        siteFont: "Source Sans Pro, Helvetica Neue, Arial, sans-serif",
+        defaultTheme: 'dark', // Bisa diatur ke 'light' atau 'dark'
+        codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
+        bodyFontSize: '15px',
+        dark: {
+          accent: '#42b983',
+          toogleBackground: '#ffffff',
+          background: '#091a28',
+          textColor: '#b0b1b1',
+          codeColor: '#e06c75',
+          sidebarSublink: '#b0b1b1',
+        },
+        light: {
+          accent: '#42b983',
+          toogleBackground: '#091a28',
+          background: '#ffffff',
+          textColor: '#34495e',
+          codeColor: '#2973b7',
+        }
       }
     }
   </script>
+  
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js" type="text/javascript"></script>
+  
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 </body>
