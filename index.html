@@ -9,42 +9,42 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" title="docsify-darklight-theme" type="text/css">
 
   <style>
-    /* 2. Hapus Icon GitHub & Rapikan Sidebar */
+    /* 2. Hapus Icon GitHub di pojok kanan atas */
     .github-corner { display: none !important; }
     
-    /* Perbaikan tampilan sidebar agar tidak terlalu mepet */
+    /* Perbaikan Sidebar agar muncul jelas */
     .sidebar { padding-top: 20px; }
     
-    /* Warna aksen hijau khas Docsify (bisa diganti) */
-    :root {
-      --docsifytabs-border-color: #ededed;
-      --docsifytabs-tab-highlight-color: #42b983;
+    /* Tombol Toggle Dark Mode di kanan bawah */
+    #docsify-darklight-theme {
+      right: 20px !important;
+      bottom: 20px !important;
     }
   </style>
 </head>
 <body>
   <div id="app">Memuat Dokumentasi...</div>
-  
+
   <script>
     window.$docsify = {
       name: 'Dramasubs Docs',
-      loadSidebar: true,    // Pastikan file _sidebar.md sudah ada di repo
-      auto2top: true,
+      loadSidebar: true,    // Harus TRUE agar menu samping muncul
       subMaxLevel: 3,
-      // Konfigurasi Search
+      auto2top: true,
+      // Fitur Pencarian
       search: {
         maxAge: 86400000,
         paths: 'auto',
-        placeholder: 'Cari sesuatu...',
+        placeholder: 'Cari dokumentasi...',
         noData: 'Tidak ditemukan!',
         depth: 4
       },
-      // Konfigurasi Dark Mode
+      // Pengaturan Warna Dark Mode
       darklightTheme: {
         defaultTheme: 'dark',
         dark: {
           accent: '#42b983',
-          background: '#091a28',
+          background: '#0e1117',
         },
         light: {
           accent: '#42b983',
