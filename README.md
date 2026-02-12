@@ -75,9 +75,9 @@ dramasubs/
 
 | Software | Versi Minimum |
 | -------- | ------------- |
-| PHP      | 8.2+          |
+| PHP      | 8.4          |
 | Composer | 2.x           |
-| Node.js  | 18+           |
+| Node.js  | 20+           |
 | NPM      | 9+            |
 
 ### Ekstensi PHP yang Dibutuhkan
@@ -93,32 +93,21 @@ dramasubs/
 
 ## 🚀 Langkah Instalasi
 
-### 1. Clone Repository
+### 1. Download File
 
 ```bash
-git clone https://github.com/username/dramasubs.git
-cd dramasubs
+Masuk ke member-area : https://akses.toko.im
+Masuk Menu Access dan download file yang tersedia
 ```
 
-### 2. Install Dependency PHP
+### 2. Generate Application Key
 
 ```bash
-composer install
-```
-
-### 3. Salin File Environment
-
-```bash
-cp .env.example .env
-```
-
-### 4. Generate Application Key
-
-```bash
+Jika hosting tidak mempunyai terminal, lewati langkah ini
 php artisan key:generate
 ```
 
-### 5. Konfigurasi `.env`
+### 3. Konfigurasi `.env`
 
 Buka file `.env` dan sesuaikan:
 
@@ -136,38 +125,16 @@ SESSION_DRIVER=file
 CACHE_STORE=file
 ```
 
-> **💡 Tip:** Jika menggunakan MySQL, ubah konfigurasi database:
+> **💡 Tip:** Jika mau menggunakan Redis, ubah konfigurasi berikut:
 >
 > ```env
-> DB_CONNECTION=mysql
-> DB_HOST=127.0.0.1
-> DB_PORT=3306
-> DB_DATABASE=dramasubs
-> DB_USERNAME=root
-> DB_PASSWORD=password_kamu
+> CACHE_STORE=redis
+> 
+> REDIS_CLIENT=phpredis
+> REDIS_HOST=127.0.0.1
+> REDIS_PASSWORD=Password_redis_Anda
+> REDIS_PORT=6379
 > ```
-
-### 6. Setup Database
-
-```bash
-# Untuk SQLite (buat file database)
-touch database/database.sqlite
-
-# Jalankan migrasi
-php artisan migrate
-```
-
-### 7. Install Dependency Node.js
-
-```bash
-npm install
-```
-
-### 8. Build Assets (CSS & JS)
-
-```bash
-npm run build
-```
 
 ### 9. Buat Storage Link
 
@@ -185,7 +152,7 @@ Login ke admin panel terlebih dahulu, lalu akses:
 https://domain-kamu.com/admin/storage-link
 ```
 
-### 10. Set Permissions (Linux/VPS)
+### 4. Set Permissions (Linux/VPS)
 
 ```bash
 chmod -R 775 storage bootstrap/cache
@@ -227,6 +194,24 @@ server {
         include fastcgi_params;
     }
 }
+```
+
+```apache
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Menangani Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Jika file atau direktori tidak ada di root, arahkan ke public
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+    # Mengalihkan semua request ke folder public/index.php
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
 ```
 
 ---
